@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Navbar = styled.div`
@@ -13,8 +14,21 @@ export const NavMenu = styled.ul`
 
 export const NavMenuElement = styled.li`
     display: inline-block;
-    padding: 25px;
-    &:hover {
-        border-bottom: -10px solid #6900af;
+    padding: 20px;
+    padding-bottom: 10px;
+    max-height: 100% !important;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-bottom: 10px solid rgba(0,0,0,0);
+    &:hover {        
+        border-bottom: 10px solid rgba(105, 0, 175, 0.75);
     }
+
+    
+`
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
 `
