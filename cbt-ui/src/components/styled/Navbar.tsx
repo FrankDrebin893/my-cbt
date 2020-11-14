@@ -22,7 +22,7 @@ export const NavMenuElement = styled.li`
     -webkit-box-sizing: border-box;
     border-bottom: 10px solid rgba(0,0,0,0);
     &:hover {        
-        border-bottom: 10px solid rgba(105, 0, 175, 0.75);
+        border-bottom: 10px solid ${props => props.theme.colors.primary};
     }
 
     
