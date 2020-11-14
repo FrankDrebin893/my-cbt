@@ -28,6 +28,9 @@ function App() {
             </Navbar>
           </header>
         </div>
+        <div>
+          Hi Cami
+        </div>
       </ThemeProvider>
     </Router>
   );
