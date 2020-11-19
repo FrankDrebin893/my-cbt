@@ -8,6 +8,10 @@ import {
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import { RationalResponseExercise } from './containers/RationalResponseExercise';
+import { Exercises } from './containers/Exercises';
+import { NotFoundPage } from './NotFound';
+import { Home } from './containers/Home';
 
 function App() {
   const LoginButton = () => {
@@ -22,14 +26,15 @@ function App() {
     if (isLoading) {
       return <div>Loading ...</div>;
     }
+    console.log(user);
     if (isAuthenticated) {
       return (
-          <div>
-            <img src={user.picture} alt={user.name} />
-            <h2>{user.name}</h2>
-            <p>{user.email}</p>
-        </div>       
-        
+        <div>
+          <img src={user.picture} alt={user.name} />
+          <h2>{user.name}</h2>
+          <p>{user.email}</p>
+        </div>
+
       );
     }
     else {
@@ -60,18 +65,12 @@ function App() {
           </div>
           <div>
             <Switch>
-              <Route path="/exercises">
-                Exercises
-            </Route>
-              <Route path="/statistics">
-                Statistics
-            </Route>
-              <Route path="/profile">
-                <Profile />
-              </Route>
-              <Route path="/">
-                Home
-            </Route>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/exercises" component={Exercises} />
+              <Route exact path="/exercises/rational-response" component={RationalResponseExercise} />
+              <Route path="/statistics" component={() => <div>Statistics</div>} />
+              <Route path="/profile" component={Profile} />
+              <Route component={NotFoundPage} />
             </Switch>
           </div>
         </ThemeProvider>
