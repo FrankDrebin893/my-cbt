@@ -1,4 +1,5 @@
 import React from "react";
+import { ResponseBody, ResponseInput, SubmitResponseButton } from '../components/exercises/RationalResponse';
 
 export function RationalResponseExercise(props: any) {
     const [exerciseState, setExerciseState] = React.useState<Array<RationalResponse>>([]);
@@ -11,17 +12,18 @@ export function RationalResponseExercise(props: any) {
 
     let previousStatements = exerciseState.map((response) => {
         return <div>
-            <span style ={{marginRight:"50px"}}>{response.statement}</span>
+            <span>{response.statement}</span>
             <span>{response.reply}</span>
         </div>
     })
 
-    return (<div>
-        {previousStatements}
-        <input onChange={(e) => setStatementState(e.target.value)} type="text" style ={{marginRight:"50px"}} />
-        <input onChange={(e) => setResponseState(e.target.value)} type="text" />
-        <button onClick={() => pushNewExercise({ statement: statementState, reply: responseState})}>Enter</button>
-    </div>)
+    return (
+        <ResponseBody>
+            {previousStatements}
+            <ResponseInput onChange={(e) => setStatementState(e.target.value)} type="text" />
+            <ResponseInput onChange={(e) => setResponseState(e.target.value)} type="text" />
+            <div><SubmitResponseButton onClick={() => pushNewExercise({ statement: statementState, reply: responseState })}>Enter</SubmitResponseButton></div>
+        </ResponseBody>)
 }
 
 interface RationalResponse {

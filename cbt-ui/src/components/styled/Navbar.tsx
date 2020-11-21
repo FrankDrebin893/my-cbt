@@ -23,11 +23,8 @@ export const NavMenuElement = styled.li`
     border-bottom: 10px solid rgba(0,0,0,0);
     &:hover {        
         border-bottom: 10px solid ${props => props.theme.colors.primary};
-    }
-
-    
+    }    
 `
-
 export const StyledLink = styled(Link)`
     text-decoration: none;
     color: black;

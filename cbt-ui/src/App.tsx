@@ -12,6 +12,7 @@ import { RationalResponseExercise } from './containers/RationalResponseExercise'
 import { Exercises } from './containers/Exercises';
 import { NotFoundPage } from './NotFound';
 import { Home } from './containers/Home';
+import { AppBody } from './components/Body';
 
 function App() {
   const LoginButton = () => {
@@ -63,7 +64,7 @@ function App() {
               </Navbar>
             </header>
           </div>
-          <div>
+          <AppBody>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/exercises" component={Exercises} />
@@ -72,7 +73,7 @@ function App() {
               <Route path="/profile" component={Profile} />
               <Route component={NotFoundPage} />
             </Switch>
-          </div>
+          </AppBody>
         </ThemeProvider>
       </Router>
     </Auth0Provider>
