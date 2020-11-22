@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, NavMenu, NavMenuElement, StyledLink } from './components/styled/Navbar';
+import { GlobalStyle, Navbar, NavMenu, NavMenuElement, StyledLink } from './components/styled/Lib';
 import {
   BrowserRouter as Router,
   Switch,
@@ -50,6 +50,7 @@ function App() {
       redirectUri={window.location.origin}
     >
       <Router>
+        <GlobalStyle />
         <ThemeProvider theme={theme}>
           <div>
             <header>
