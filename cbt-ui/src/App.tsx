@@ -13,6 +13,7 @@ import { Exercises } from './containers/Exercises';
 import { NotFoundPage } from './NotFound';
 import { Home } from './containers/Home';
 import { AppBody } from './components/Body';
+import { RationalResponseContainer } from './containers/RationalResponseContainer';
 
 function App() {
   const LoginButton = () => {
@@ -70,6 +71,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/exercises" component={Exercises} />
               <Route exact path="/exercises/rational-response" component={RationalResponseExercise} />
+  {/*<Route exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />*/}
               <Route path="/statistics" component={() => <div>Statistics</div>} />
               <Route path="/profile" component={Profile} />
               <Route component={NotFoundPage} />
