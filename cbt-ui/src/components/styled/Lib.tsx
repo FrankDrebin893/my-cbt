@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
     body {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;;
     }
 `
 
@@ -47,9 +47,13 @@ export const Button = styled.button`
 
 `
 
-export const Grid = styled.div`
+interface GridProps {
+    columns: number;
+}
+
+export const Grid = styled.div<GridProps>`
     display: grid;
-    grid-template-columns: repeat(auto-fill, calc(100%/2));
+    grid-template-columns: repeat(auto-fill, calc(100%/${props => props.columns}));
 `
 
 export const GridItem = styled.div`

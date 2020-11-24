@@ -1,23 +1,25 @@
 import React from 'react';
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/react/types-6-0';
-
-import { Page, PageProps } from './Page';
-import * as HeaderStories from './Header.stories';
+import { RationalResponseExercise, RationalResponseProps } from '../containers/RationalResponseExercise';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import { ThemeProvider } from 'styled-components';
+import theme from '../theme';
+import { GlobalStyle } from '../components/styled/Lib';
 
 export default {
-  title: 'Example/Page',
-  component: Page,
+  title: 'Example/RationalResponseExercise',
+  component: RationalResponseExercise,
 } as Meta;
 
-const Template: Story<PageProps> = (args) => <Page {...args} />;
+const Template: Story<RationalResponseProps> = (args) =>
+  <ThemeProvider theme={theme}>
+    <GlobalStyle />
+    <RationalResponseExercise {...args} />
+  </ThemeProvider>;
 
-export const LoggedIn = Template.bind({});
-LoggedIn.args = {
-  ...HeaderStories.LoggedIn.args,
-};
-
-export const LoggedOut = Template.bind({});
-LoggedOut.args = {
-  ...HeaderStories.LoggedOut.args,
+export const Exercise = Template.bind({});
+Exercise.args = {
+  Responses: [{ reply: "This is a response", statement: "This is a statement" },
+  { reply: "This is a second response", statement: "This is a second statement" },
+  { reply: "This is a third response", statement: "This is a third statement" },
+  { reply: "This is a fourth response", statement: "This is a fourth statement" }]
 };

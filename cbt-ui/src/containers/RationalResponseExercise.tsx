@@ -18,7 +18,7 @@ export function RationalResponseExercise(props: RationalResponseProps) {
 
     return (
         <div>
-            <Grid>
+            <Grid columns={2}>
                 <GridHeader>Statement</GridHeader>
                 <GridHeader>Response</GridHeader>
                 {previousStatements}

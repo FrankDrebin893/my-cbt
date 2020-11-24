@@ -71,7 +71,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/exercises" component={Exercises} />
               <Route exact path="/exercises/rational-response" component={RationalResponseExercise} />
-  {/*<Route exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />*/}
+              <Route exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
               <Route path="/statistics" component={() => <div>Statistics</div>} />
               <Route path="/profile" component={Profile} />
               <Route component={NotFoundPage} />
