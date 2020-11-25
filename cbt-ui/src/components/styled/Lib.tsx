@@ -7,18 +7,22 @@ export const GlobalStyle = createGlobalStyle`
     }
 `
 
-export const Navbar = styled.div`
+export const Navbar = styled.nav`
     background: white;
     width: 100%;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, .1);
+    overflow: auto;
+    height: 70px;
+    position: relative;
 `
 
 export const NavMenu = styled.ul`
     list-style-type: none;
     margin: 0;
+    height: 100%;
 `
 
-export const NavMenuElement = styled.li`
+export const NavMenuElement = styled.li<{displayHover?: boolean}>`
     display: inline-block;
     padding: 20px;
     padding-bottom: 10px;
@@ -27,8 +31,9 @@ export const NavMenuElement = styled.li`
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border-bottom: 10px solid rgba(0,0,0,0);
+    height: 100%;
     &:hover {        
-        border-bottom: 10px solid ${props => props.theme.colors.primary};
+        border-bottom: ${props => props.displayHover ? `10px solid ${props.theme.colors.primary}` : ""};
     }    
 `
 export const StyledLink = styled(Link)`
@@ -44,7 +49,18 @@ export const Input = styled.input`
 `
 
 export const Button = styled.button`
-
+    border-radius: 4px;
+    border: 1px solid black;
+    background: ${props => props.theme.colors.primary};
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    font-weight: 800;
+    &:hover {
+        cursor: pointer
+    }
 `
 
 interface GridProps {

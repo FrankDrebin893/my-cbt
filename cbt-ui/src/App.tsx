@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalStyle, Navbar, NavMenu, NavMenuElement, StyledLink } from './components/styled/Lib';
+import { Button, GlobalStyle, Navbar, NavMenu, NavMenuElement, StyledLink } from './components/styled/Lib';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,9 +17,11 @@ import { RationalResponseContainer } from './containers/RationalResponseContaine
 
 function App() {
   const LoginButton = () => {
-    const { loginWithRedirect } = useAuth0();
+    const { loginWithRedirect, isAuthenticated } = useAuth0();
+    if (isAuthenticated)
+      return <span>Logged in</span>;
 
-    return <button onClick={() => loginWithRedirect()}>Log In</button>;
+    return <Button onClick={() => loginWithRedirect()}>Log In</Button>;
   };
 
   const Profile = () => {
@@ -56,12 +58,14 @@ function App() {
           <div>
             <header>
               <Navbar>
-                <NavMenu>
-                  <StyledLink to="/"><NavMenuElement>Home</NavMenuElement></StyledLink>
-                  <StyledLink to="/exercises"><NavMenuElement>Exercises</NavMenuElement></StyledLink>
-                  <StyledLink to="/statistics"><NavMenuElement>Statistics</NavMenuElement></StyledLink>
-                  <StyledLink to="/profile"><NavMenuElement>Profile</NavMenuElement></StyledLink>
-                  <LoginButton />
+                <NavMenu style={{float:"left"}}>
+                  <StyledLink to="/"><NavMenuElement displayHover>Home</NavMenuElement></StyledLink>
+                  <StyledLink to="/exercises"><NavMenuElement displayHover>Exercises</NavMenuElement></StyledLink>
+                  <StyledLink to="/statistics"><NavMenuElement displayHover>Statistics</NavMenuElement></StyledLink>
+                  <StyledLink to="/profile"><NavMenuElement displayHover>Profile</NavMenuElement></StyledLink>
+                </NavMenu>
+                <NavMenu style={{float:"right"}}>
+                  <NavMenuElement><LoginButton /></NavMenuElement>
                 </NavMenu>
               </Navbar>
             </header>
