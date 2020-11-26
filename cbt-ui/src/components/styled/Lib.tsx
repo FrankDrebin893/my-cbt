@@ -12,7 +12,7 @@ export const Navbar = styled.nav`
     width: 100%;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, .1);
     overflow: auto;
-    height: 70px;
+    height: 60px;
     position: relative;
 `
 

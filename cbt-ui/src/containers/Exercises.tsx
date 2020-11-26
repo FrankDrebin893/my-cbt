@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { RationalResponseIcon } from "../components/styled/Icons";
 import { Grid, GridHeader, GridItem } from "../components/styled/Lib";
 import { RationalResponseExercise } from "./RationalResponseExercise";
@@ -15,7 +15,7 @@ export const Exercises = () => {
                 <GridHeader>Journal</GridHeader>
                 <GridHeader>Journal</GridHeader>
                 <GridHeader>Journal</GridHeader>
-                <GridItem><img style={{ maxWidth: "20%", maxHeight: "20%"}} src={"/icons/png/001-chat.png"} /></GridItem>
+                <Link to="exercises/rational-response"><GridItem><img style={{ maxWidth: "20%", maxHeight: "20%"}} src={"/icons/png/001-chat.png"} /></GridItem></Link>
                 <GridItem><img style={{ maxWidth: "20%", maxHeight: "20%"}} src={"/icons/png/001-chat.png"} /></GridItem>
                 <GridItem><img style={{ maxWidth: "20%", maxHeight: "20%" }} src={"/icons/png/001-chat.png"} /></GridItem>
                 <GridItem><img style={{ maxWidth: "20%", maxHeight: "20%" }} src={"/icons/png/001-chat.png"} /></GridItem>

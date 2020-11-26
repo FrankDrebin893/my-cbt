@@ -14,6 +14,8 @@ export const RationalResponseContainer = (props: any) => {
         existingAnswers = JSON.parse(json);
     
     const saveExercise = (values: Array<RationalResponse>) => {
+        if (id == null)
+            id = Math.floor(Math.random() * 100);
         localStorage.setItem(`exercise-id-${id}`, JSON.stringify(values));
     }
 
