@@ -18,8 +18,8 @@ const Template: Story<RationalResponseProps> = (args) =>
 
 export const Exercise = Template.bind({});
 Exercise.args = {
-  Responses: [{ reply: "This is a response", statement: "This is a statement" },
-  { reply: "This is a second response", statement: "This is a second statement" },
-  { reply: "This is a third response", statement: "This is a third statement" },
-  { reply: "This is a fourth response", statement: "This is a fourth statement" }]
+  Responses: [{ response: "This is a response", statement: "This is a statement" },
+  { response: "This is a second response", statement: "This is a second statement" },
+  { response: "This is a third response", statement: "This is a third statement" },
+  { response: "This is a fourth response", statement: "This is a fourth statement" }]
 };

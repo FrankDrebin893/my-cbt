@@ -18,9 +18,14 @@ namespace MyCbt.Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .ConfigureAppConfiguration((context, config) =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    var env = context.HostingEnvironment;
+                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false,
+                            reloadOnChange: true); // optional extra provider
+                    config.Build();
+                })
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }

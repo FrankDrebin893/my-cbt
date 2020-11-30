@@ -37,4 +37,5 @@ msbuild.wrn
 .vs/
 
 # Local config
-appsettings.local.json
+appsettings.Development.json
+appsettings.Local.json

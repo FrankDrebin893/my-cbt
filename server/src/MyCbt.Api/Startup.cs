@@ -2,14 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MyCbt.Application.RationalResponse.Queries;
+using MyCbt.Infrastructure.Persistence;
 
 namespace MyCbt.Api
 {
@@ -26,6 +30,8 @@ namespace MyCbt.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMediatR(typeof(GetRationalResponsesQuery));
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("name=MyCbtDatabase"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,8 +42,10 @@ namespace MyCbt.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
+            app.UseHttpsRedirection();
+            
             app.UseRouting();
 
             app.UseAuthorization();
@@ -46,6 +54,7 @@ namespace MyCbt.Api
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
