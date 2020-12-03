@@ -43,5 +43,19 @@ namespace MyCbt.Api.Controllers
         {
             return Ok(await Mediator.Send(addRationalResponseCommand));
         }
+
+        [HttpPut]
+        [Route("")]
+        public async Task<IActionResult> UpdateRationalResponse(UpdateRationalResponseCommand updateRationalResponseCommand)
+        {
+            return Ok(await Mediator.Send(updateRationalResponseCommand));
+        }
+
+        [HttpGet]
+        [Route("Hello")]
+        public IActionResult Hello()
+        {
+            return Ok("Hello");
+        }
     }
 }
