@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +33,7 @@ namespace MyCbt.Api
             services.AddControllers();
             services.AddMediatR(typeof(GetRationalResponsesQuery));
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("name=MyCbtDatabase"));
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +46,12 @@ namespace MyCbt.Api
 
             app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyCBT Api");
+            });
+
             app.UseHttpsRedirection();
             
             app.UseRouting();
@@ -54,6 +62,9 @@ namespace MyCbt.Api
             {
                 endpoints.MapControllers();
             });
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
 
         }
     }
