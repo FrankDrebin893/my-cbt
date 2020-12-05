@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyCbt.Application.RationalResponse.Commands;
@@ -13,7 +14,7 @@ using MyCbt.Infrastructure.Persistence;
 namespace MyCbt.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class RationalResponseController : ApiControllerBase
     {
         private readonly ILogger<RationalResponseController> _logger;
@@ -51,11 +52,20 @@ namespace MyCbt.Api.Controllers
             return Ok(await Mediator.Send(updateRationalResponseCommand));
         }
 
+        [Authorize]
         [HttpGet]
         [Route("Hello")]
         public IActionResult Hello()
         {
-            return Ok("Hello");
+            return Ok("Hello authorized");
+        }
+
+
+        [HttpGet]
+        [Route("Good")]
+        public IActionResult Good()
+        {
+            return Ok("Hello unauthorized");
         }
     }
 }

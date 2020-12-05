@@ -15,18 +15,35 @@ import { Home } from './containers/Home';
 import { AppBody } from './components/Body';
 import { RationalResponseContainer } from './containers/RationalResponseContainer';
 import { RationalResponseHome } from './containers/RationalResponseHome';
+import * as axios from 'axios';
 
 function App() {
   const LoginButton = () => {
-    const { loginWithRedirect, isAuthenticated } = useAuth0();
+    const { loginWithRedirect, isAuthenticated, getAccessTokenSilently, logout } = useAuth0();
     if (isAuthenticated)
-      return <span>Logged in</span>;
+      return <span>Logged in <Button onClick={() => logout()}>Log Out</Button></span>;
 
-    return <Button onClick={() => loginWithRedirect()}>Log In</Button>;
+    return <Button onClick={() => loginWithRedirect({audience: 'https://localhost:44363'})}>Log In</Button>;
   };
 
   const Profile = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+
+    (async () => {
+      try {
+        const token = await getAccessTokenSilently({audience: 'https://localhost:44363'});
+        console.log("Token", token);
+
+        axios.default.get('https://localhost:44363/api/RationalResponse/Hello', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }).then(r => console.log(r));
+
+      } catch (e) {
+        console.log(e);
+      }
+    })();
 
     if (isLoading) {
       return <div>Loading ...</div>;
@@ -59,13 +76,13 @@ function App() {
           <div>
             <header>
               <Navbar>
-                <NavMenu style={{float:"left"}}>
+                <NavMenu style={{ float: "left" }}>
                   <StyledLink to="/"><NavMenuElement displayHover>Home</NavMenuElement></StyledLink>
                   <StyledLink to="/exercises"><NavMenuElement displayHover>Exercises</NavMenuElement></StyledLink>
                   <StyledLink to="/statistics"><NavMenuElement displayHover>Statistics</NavMenuElement></StyledLink>
                   <StyledLink to="/profile"><NavMenuElement displayHover>Profile</NavMenuElement></StyledLink>
                 </NavMenu>
-                <NavMenu style={{float:"right"}}>
+                <NavMenu style={{ float: "right" }}>
                   <NavMenuElement><LoginButton /></NavMenuElement>
                 </NavMenu>
               </Navbar>

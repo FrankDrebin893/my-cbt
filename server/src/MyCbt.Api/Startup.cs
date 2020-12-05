@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,10 +31,20 @@ namespace MyCbt.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var authority = Configuration["Auth0:Authority"];
             services.AddControllers();
             services.AddMediatR(typeof(GetRationalResponsesQuery));
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("name=MyCbtDatabase"));
             services.AddSwaggerGen();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = authority;
+                options.Audience = Configuration["Auth0:Audience"];
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +67,10 @@ namespace MyCbt.Api
             
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
