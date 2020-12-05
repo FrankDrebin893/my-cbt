@@ -57,6 +57,7 @@ namespace MyCbt.Api.Controllers
         [Route("Hello")]
         public IActionResult Hello()
         {
+            var user = User;
             return Ok("Hello authorized");
         }
 
