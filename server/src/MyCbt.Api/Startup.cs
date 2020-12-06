@@ -34,7 +34,7 @@ namespace MyCbt.Api
             var authority = Configuration["Auth0:Authority"];
             services.AddControllers();
             services.AddMediatR(typeof(GetRationalResponsesQuery));
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("name=MyCbtDatabase"));
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyCbtDatabase")));
             services.AddSwaggerGen();
             services.AddAuthentication(options =>
             {

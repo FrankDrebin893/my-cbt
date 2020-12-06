@@ -6,7 +6,7 @@ import { RationalResponse } from "../interfaces/RationalResponse";
 export const RationalResponseHome = () => {
     const [rationalResponseState, setRationalResponseState] = React.useState<Array<RationalResponse>>([])
     React.useEffect(() => {
-        api.getRationalResponses()
+        api.getRationalResponses("")
             .then((responses) => {
                 console.log("Values:", responses);
                 setRationalResponseState(responses);

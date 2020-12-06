@@ -14,7 +14,7 @@ export const RationalResponseContainer = (props: any) => {
     React.useEffect(() => {
         console.log("ID:", id);
         if (id) {
-            rationalResponseApi.getRationalResponseById(id)
+            rationalResponseApi.getRationalResponseById(id, "")
                 .then(value => {
                     console.log("value:", value);
                     setRationalResponseState(value);
@@ -24,7 +24,7 @@ export const RationalResponseContainer = (props: any) => {
 
     const saveExercise = (values: Array<RationalResponseEntry>) => {
         console.log("Request:", { Entries: values });
-        rationalResponseApi.postRationalResponse({ Entries: values });
+        rationalResponseApi.postRationalResponse({ Entries: values }, "");
     }
 
     var responseProps: RationalResponseProps = {

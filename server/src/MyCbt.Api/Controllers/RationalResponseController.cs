@@ -15,6 +15,7 @@ namespace MyCbt.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class RationalResponseController : ApiControllerBase
     {
         private readonly ILogger<RationalResponseController> _logger;
@@ -47,26 +48,10 @@ namespace MyCbt.Api.Controllers
 
         [HttpPut]
         [Route("")]
+        [Authorize]
         public async Task<IActionResult> UpdateRationalResponse(UpdateRationalResponseCommand updateRationalResponseCommand)
         {
             return Ok(await Mediator.Send(updateRationalResponseCommand));
-        }
-
-        [Authorize]
-        [HttpGet]
-        [Route("Hello")]
-        public IActionResult Hello()
-        {
-            var user = User;
-            return Ok("Hello authorized");
-        }
-
-
-        [HttpGet]
-        [Route("Good")]
-        public IActionResult Good()
-        {
-            return Ok("Hello unauthorized");
         }
     }
 }

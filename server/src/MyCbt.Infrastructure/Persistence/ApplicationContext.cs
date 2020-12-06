@@ -12,14 +12,19 @@ namespace MyCbt.Infrastructure.Persistence
     public class ApplicationContext : DbContext
     {
         public DbSet<RationalResponseExercise> RationalResponseExercises {get;set;}
+
+        public ApplicationContext()
+        {
+        }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer("name=MyCbtDatabase");
-        }
+        }*/
     }
 
     public class ApplicationContextFactory : IDesignTimeDbContextFactory<ApplicationContext>

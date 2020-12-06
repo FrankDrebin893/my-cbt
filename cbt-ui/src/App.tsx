@@ -16,39 +16,25 @@ import { AppBody } from './components/Body';
 import { RationalResponseContainer } from './containers/RationalResponseContainer';
 import { RationalResponseHome } from './containers/RationalResponseHome';
 import * as axios from 'axios';
+import { LoginHandler } from './containers/LoginHandler';
 
 function App() {
   const LoginButton = () => {
     const { loginWithRedirect, isAuthenticated, getAccessTokenSilently, logout } = useAuth0();
     if (isAuthenticated)
       return <span>Logged in <Button onClick={() => logout()}>Log Out</Button></span>;
-
-    return <Button onClick={() => loginWithRedirect({audience: 'https://localhost:44363'})}>Log In</Button>;
+    
+    let redirectUri = `${window.location.origin}/handle-login?redirectUri=${encodeURI(window.location.origin)}`;
+    return <Button onClick={() => loginWithRedirect({audience: 'https://localhost:44363', redirectUri })}>Log In</Button>;
   };
 
   const Profile = () => {
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
-
-    (async () => {
-      try {
-        const token = await getAccessTokenSilently({audience: 'https://localhost:44363'});
-        console.log("Token", token);
-
-        axios.default.get('https://localhost:44363/api/RationalResponse/Hello', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }).then(r => console.log(r));
-
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    const { user, isAuthenticated, isLoading } = useAuth0();
 
     if (isLoading) {
       return <div>Loading ...</div>;
     }
-    console.log(user);
+
     if (isAuthenticated) {
       return (
         <div>
@@ -97,6 +83,7 @@ function App() {
               <Route exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
               <Route path="/statistics" component={() => <div>Statistics</div>} />
               <Route path="/profile" component={Profile} />
+              <Route path="/handle-login" component={LoginHandler} />
               <Route component={NotFoundPage} />
             </Switch>
           </AppBody>
