@@ -17,15 +17,17 @@ import { RationalResponseContainer } from './containers/RationalResponseContaine
 import { RationalResponseHome } from './containers/RationalResponseHome';
 import * as axios from 'axios';
 import { LoginHandler } from './containers/LoginHandler';
+import store from './store';
+import { Provider } from 'react-redux'
 
 function App() {
   const LoginButton = () => {
     const { loginWithRedirect, isAuthenticated, getAccessTokenSilently, logout } = useAuth0();
     if (isAuthenticated)
       return <span>Logged in <Button onClick={() => logout()}>Log Out</Button></span>;
-    
+
     let redirectUri = `${window.location.origin}/handle-login?redirectUri=${encodeURI(window.location.origin)}`;
-    return <Button onClick={() => loginWithRedirect({audience: 'https://localhost:44363', redirectUri })}>Log In</Button>;
+    return <Button onClick={() => loginWithRedirect({ audience: 'https://localhost:44363', redirectUri })}>Log In</Button>;
   };
 
   const Profile = () => {
@@ -51,45 +53,47 @@ function App() {
   };
 
   return (
-    <Auth0Provider
-      domain="dev-x1jd55np.eu.auth0.com"
-      clientId="yvzMwGvGoXHT5lPa6sDpjy63YJ9XdJPe"
-      redirectUri={window.location.origin}
-    >
-      <Router>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <div>
-            <header>
-              <Navbar>
-                <NavMenu style={{ float: "left" }}>
-                  <StyledLink to="/"><NavMenuElement displayHover>Home</NavMenuElement></StyledLink>
-                  <StyledLink to="/exercises"><NavMenuElement displayHover>Exercises</NavMenuElement></StyledLink>
-                  <StyledLink to="/statistics"><NavMenuElement displayHover>Statistics</NavMenuElement></StyledLink>
-                  <StyledLink to="/profile"><NavMenuElement displayHover>Profile</NavMenuElement></StyledLink>
-                </NavMenu>
-                <NavMenu style={{ float: "right" }}>
-                  <NavMenuElement><LoginButton /></NavMenuElement>
-                </NavMenu>
-              </Navbar>
-            </header>
-          </div>
-          <AppBody>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/exercises" component={Exercises} />
-              <Route exact path="/exercises/rational-response" component={RationalResponseHome} />
-              <Route exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
-              <Route exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
-              <Route path="/statistics" component={() => <div>Statistics</div>} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/handle-login" component={LoginHandler} />
-              <Route component={NotFoundPage} />
-            </Switch>
-          </AppBody>
-        </ThemeProvider>
-      </Router>
-    </Auth0Provider>
+    <Provider store={store}>
+      <Auth0Provider
+        domain="dev-x1jd55np.eu.auth0.com"
+        clientId="yvzMwGvGoXHT5lPa6sDpjy63YJ9XdJPe"
+        redirectUri={window.location.origin}
+      >
+        <Router>
+          <GlobalStyle />
+          <ThemeProvider theme={theme}>
+            <div>
+              <header>
+                <Navbar>
+                  <NavMenu style={{ float: "left" }}>
+                    <StyledLink to="/"><NavMenuElement displayHover>Home</NavMenuElement></StyledLink>
+                    <StyledLink to="/exercises"><NavMenuElement displayHover>Exercises</NavMenuElement></StyledLink>
+                    <StyledLink to="/statistics"><NavMenuElement displayHover>Statistics</NavMenuElement></StyledLink>
+                    <StyledLink to="/profile"><NavMenuElement displayHover>Profile</NavMenuElement></StyledLink>
+                  </NavMenu>
+                  <NavMenu style={{ float: "right" }}>
+                    <NavMenuElement><LoginButton /></NavMenuElement>
+                  </NavMenu>
+                </Navbar>
+              </header>
+            </div>
+            <AppBody>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/exercises" component={Exercises} />
+                <Route exact path="/exercises/rational-response" component={RationalResponseHome} />
+                <Route exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
+                <Route exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
+                <Route path="/statistics" component={() => <div>Statistics</div>} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/handle-login" component={LoginHandler} />
+                <Route component={NotFoundPage} />
+              </Switch>
+            </AppBody>
+          </ThemeProvider>
+        </Router>
+      </Auth0Provider>
+    </Provider>
   );
 }
 
