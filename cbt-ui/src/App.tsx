@@ -19,6 +19,7 @@ import * as axios from 'axios';
 import { LoginHandler } from './containers/LoginHandler';
 import store from './store';
 import { Provider } from 'react-redux'
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const LoginButton = () => {
@@ -82,8 +83,8 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/exercises" component={Exercises} />
                 <Route exact path="/exercises/rational-response" component={RationalResponseHome} />
-                <Route exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
-                <Route exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
+                <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
+                <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
                 <Route path="/statistics" component={() => <div>Statistics</div>} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/handle-login" component={LoginHandler} />

@@ -8,8 +8,6 @@ import { setAuthToken } from '../store/auth/types';
 export const LoginHandler = () => {
     const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
     let { redirectUri }: any = useParams<any>();
-    console.log("Login stuff:", user, isAuthenticated, isLoading, redirectUri);
-    const [accessToken, setAccessToken] = React.useState<string>();
 
     const dispatch = useDispatch();
     React.useEffect(() => {
@@ -17,16 +15,15 @@ export const LoginHandler = () => {
             console.log("Getting token silently");
             getAccessTokenSilently().then((token) => {
                 console.log("Token:", token);
-                setAccessToken(token);
                 console.log("Dispatching token");
                 dispatch(setAuthToken(token));
             });
         }
-    });
+    }, [isLoading]);
 
-    if (accessToken) {
-        return <Redirect to={redirectUri} />
-    }
 
-    return <div>Loading...</div>;
+    if (isLoading)
+        return <div>Loading...</div>;
+
+    return <Redirect to={redirectUri} />
 }
