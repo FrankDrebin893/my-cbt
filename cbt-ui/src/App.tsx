@@ -28,7 +28,7 @@ function App() {
       return <span>Logged in <Button onClick={() => logout()}>Log Out</Button></span>;
 
     let redirectUri = `${window.location.origin}/handle-login?redirectUri=${encodeURI(window.location.origin)}`;
-    return <Button onClick={() => loginWithRedirect({ audience: 'https://localhost:44363', redirectUri })}>Log In</Button>;
+    return <Button onClick={() => loginWithRedirect({ audience: process.env.REACT_APP_BACKEND_BASE_URI, redirectUri })}>Log In</Button>;
   };
 
   const Profile = () => {
@@ -82,7 +82,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/exercises" component={Exercises} />
-                <Route exact path="/exercises/rational-response" component={RationalResponseHome} />
+                <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHome} />
                 <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
                 <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
                 <Route path="/statistics" component={() => <div>Statistics</div>} />

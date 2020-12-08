@@ -2,16 +2,16 @@ import * as axios from 'axios';
 import { RationalResponse, RationalResponseEntry } from '../interfaces/RationalResponse';
 
 export function postRationalResponse(request: AddRationalResponseCommand, accessToken: string):Promise<number> {
-    return axios.default.post("https://localhost:44363/rationalresponse", request);
+    return axios.default.post(process.env.REACT_APP_BACKEND_BASE_URI + "/api/rationalresponse", request);
 }
 
 export function getRationalResponses(accessToken: string):Promise<Array<RationalResponse>> {
-    return axios.default.get("https://localhost:44363/rationalresponse/getall")
+    return axios.default.get(process.env.REACT_APP_BACKEND_BASE_URI + "/api/rationalresponse/getall")
         .then(response => response.data);
 }
 
 export function getRationalResponseById(id: number, accessToken: string):Promise<RationalResponse> {
-    return axios.default.get(`https://localhost:44363/rationalresponse/getbyid?id=${id}`)
+    return axios.default.get(process.env.REACT_APP_BACKEND_BASE_URI + `/api/rationalresponse/getbyid?id=${id}`)
         .then(response => response.data);
 }
 
