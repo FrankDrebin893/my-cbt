@@ -36,7 +36,7 @@ namespace MyCbt.Api.Controllers
         [Route("GetById")]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await Mediator.Send(new GetRationalResponseByIdQuery() {Id = id}));
+            return Ok(await Mediator.Send(new GetRationalResponseByIdQuery {Id = id}));
         }
 
         [HttpPost]

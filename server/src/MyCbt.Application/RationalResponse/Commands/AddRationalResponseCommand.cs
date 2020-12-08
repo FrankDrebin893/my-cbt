@@ -11,6 +11,7 @@ namespace MyCbt.Application.RationalResponse.Commands
 {
     public class AddRationalResponseCommand : IRequest<int>
     {
+        public string UserId { get; set; }
         public List<RationalResponseEntry> Entries { get; set; }
 
         protected class AddRationalResponseCommandHandler : IRequestHandler<AddRationalResponseCommand, int>
@@ -26,6 +27,7 @@ namespace MyCbt.Application.RationalResponse.Commands
             {
                 var entity = new RationalResponseExercise();
                 entity.Entries = request.Entries;
+                entity.UserId = request.UserId;
                 var added = await _context.AddAsync<RationalResponseExercise>(entity, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
                 return added.Entity.Id;
