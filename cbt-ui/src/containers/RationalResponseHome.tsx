@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as api from '../api/rationalResponseApi';
 import { RationalResponse } from "../interfaces/RationalResponse";
 import { useAuth0 } from '@auth0/auth0-react';
-import { Button } from '../components/styled/Lib';
+import { Button } from '../components/styled/Input';
 
 export const RationalResponseHome = () => {
     const [rationalResponseState, setRationalResponseState] = React.useState<Array<RationalResponse>>([])

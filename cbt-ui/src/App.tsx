@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalStyle, Navbar, NavMenu, NavMenuElement, StyledLink } from './components/styled/Lib';
+import { Navbar, NavMenu, NavMenuElement, StyledLink } from './components/styled/Navigation';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,7 +11,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { Exercises } from './containers/Exercises';
 import { NotFoundPage } from './NotFound';
 import { Home } from './containers/Home';
-import { AppBody } from './components/Body';
 import { RationalResponseContainer } from './containers/RationalResponseContainer';
 import { RationalResponseHome } from './containers/RationalResponseHome';
 import store from './store';
@@ -19,6 +18,7 @@ import { Provider } from 'react-redux'
 import ProtectedRoute from './components/ProtectedRoute';
 import { LoginButton } from './components/LoginButton';
 import { UserProfilePage } from './containers/UserProfilePage';
+import { GlobalStyle, AppBody } from './components/styled/SharedCss';
 
 function App() {
   return (

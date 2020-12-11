@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
 import { RationalResponseIcon } from "../components/styled/Icons";
-import { Grid, GridHeader, GridItem } from "../components/styled/Lib";
+import { Grid, GridHeader, GridItem } from "../components/styled/Layout";
 import { RationalResponseExercise } from "./RationalResponseExercise";
 
 export const Exercises = () => {

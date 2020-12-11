@@ -3,7 +3,7 @@ import { RationalResponseExercise, RationalResponseProps } from '../containers/R
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { ThemeProvider } from 'styled-components';
 import theme from '../theme';
-import { GlobalStyle } from '../components/styled/Lib';
+import { GlobalStyle } from '../components/styled/SharedCss';
 
 export default {
   title: 'Example/RationalResponseExercise',
