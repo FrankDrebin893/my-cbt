@@ -21,12 +21,7 @@ export function RationalResponseExercise(props: RationalResponseProps) {
         focusStatementInput();
     };
 
-    const handleKeyDown = (event: any) => {
-        if (event.keyCode == 13) {
-            event.preventDefault();
-            pushNew();
-        }
-    }
+    
 
     const focusStatementInput = () => {
         if (statementInput && statementInput.current) {
@@ -39,13 +34,20 @@ export function RationalResponseExercise(props: RationalResponseProps) {
     }, [statementInput]);
 
     React.useEffect(() => {
+        const handleKeyDown = (event: any) => {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                pushNew();
+            }
+        }
+
         window.addEventListener('keydown', handleKeyDown);
 
         // cleanup this component
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [handleKeyDown]);
+    });
 
     let previousStatements = exerciseState.map((response: RationalResponseEntry, index) => {
         return <React.Fragment key={"entry" + index}>

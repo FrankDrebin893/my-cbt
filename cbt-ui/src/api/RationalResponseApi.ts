@@ -7,7 +7,7 @@ import {
 export function postRationalResponse(
 	request: AddRationalResponseCommand,
 	accessToken: string
-): Promise<number> {
+): Promise<number|null> {
     console.log("Token posted:", accessToken);
 	return axios.default.post(
 		process.env.REACT_APP_BACKEND_BASE_URI + '/api/rationalresponse',
@@ -15,7 +15,13 @@ export function postRationalResponse(
         {
             headers: createHeaderWithAuthorization(accessToken),
         }
-	);
+	).then(response => {
+		if (response.status === 200) {
+			return response.data;
+		}
+
+		return null;
+	} );
 }
 
 export function getRationalResponses(
