@@ -1,9 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import { RationalResponseExercise, RationalResponseProps } from './RationalResponseExercise';
 import { RationalResponse, RationalResponseEntry } from "../interfaces/RationalResponse";
-import * as rationalResponseApi from '../api/rationalResponseApi';
+import * as RationalResponseApi from "../api/RationalResponseApi";
 
 export const RationalResponseContainer = (props: any) => {
     let { id }: any = useParams<any>();
@@ -11,7 +10,7 @@ export const RationalResponseContainer = (props: any) => {
 
     React.useEffect(() => {
         if (id) {
-            rationalResponseApi.getRationalResponseById(id, "")
+            RationalResponseApi.getRationalResponseById(id, "")
                 .then(value => {
                     setRationalResponseState(value);
                 });
@@ -19,7 +18,7 @@ export const RationalResponseContainer = (props: any) => {
     }, [])
 
     const saveExercise = (values: Array<RationalResponseEntry>) => {
-        rationalResponseApi.postRationalResponse({ Entries: values }, "");
+        RationalResponseApi.postRationalResponse({ Entries: values }, "");
     }
 
     var responseProps: RationalResponseProps = {

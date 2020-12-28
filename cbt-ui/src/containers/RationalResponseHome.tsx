@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as api from '../api/rationalResponseApi';
+import * as api from '../api/RationalResponseApi';
 import { RationalResponse } from "../interfaces/RationalResponse";
 
 export const RationalResponseHome = () => {
