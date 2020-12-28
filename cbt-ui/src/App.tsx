@@ -9,15 +9,15 @@ import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Exercises } from './containers/Exercises';
-import { NotFoundPage } from './NotFound';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { Home } from './containers/Home';
 import { RationalResponseContainer } from './containers/RationalResponseContainer';
-import { RationalResponseHome } from './containers/RationalResponseHome';
+import { RationalResponseHomePage } from './pages/RationalResponseHomePage';
 import store from './store';
 import { Provider } from 'react-redux'
 import ProtectedRoute from './components/ProtectedRoute';
 import { LoginButton } from './components/LoginButton';
-import { UserProfilePage } from './containers/UserProfilePage';
+import { UserProfilePage } from './pages/UserProfilePage';
 import { GlobalStyle, AppBody } from './components/styled/SharedCss';
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/exercises" component={Exercises} />
-                <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHome} />
+                <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHomePage} />
                 <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
                 <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
                 <Route path="/statistics" component={() => <div>Statistics</div>} />

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const Navbar = styled.nav`
     background: white;
     width: 100%;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, .1);
     overflow: auto;
     height: 60px;
     position: relative;

@@ -5,7 +5,7 @@ import { RationalResponse } from "../interfaces/RationalResponse";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '../components/styled/Input';
 
-export const RationalResponseHome = () => {
+export const RationalResponseHomePage = () => {
     const [rationalResponseState, setRationalResponseState] = React.useState<Array<RationalResponse>>([])
     const { getAccessTokenSilently } = useAuth0();
 
