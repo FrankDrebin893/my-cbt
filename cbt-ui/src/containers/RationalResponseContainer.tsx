@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { RationalResponseExercise, RationalResponseProps } from './RationalResponseExercise';
 import { RationalResponse, RationalResponseEntry } from "../interfaces/RationalResponse";
-import * as rationalResponseApi from '../api/rationalResponseApi';
+import * as rationalResponseApi from '../api/RationalResponseApi';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export const RationalResponseContainer = (props: any) => {
