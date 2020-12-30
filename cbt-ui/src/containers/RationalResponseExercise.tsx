@@ -1,7 +1,9 @@
 import React from "react";
-import { Button, Input } from "../components/styled/Input";
+import { Button } from "../components/styled/Input";
 import { Box, Grid, GridHeader, GridItem } from "../components/styled/Layout";
 import { RationalResponseEntry } from "../interfaces/RationalResponse";
+import { TextField } from "../components/styled/Input";
+
 
 export function RationalResponseExercise(props: RationalResponseProps) {
     const [exerciseState, setExerciseState] = React.useState<Array<RationalResponseEntry>>(props.Responses ?? []);
@@ -21,13 +23,11 @@ export function RationalResponseExercise(props: RationalResponseProps) {
         focusStatementInput();
     };
 
-    
-
     const focusStatementInput = () => {
         if (statementInput && statementInput.current) {
             statementInput.current.focus();
         }
-    }
+    };
 
     React.useEffect(() => {
         focusStatementInput();
@@ -64,8 +64,8 @@ export function RationalResponseExercise(props: RationalResponseProps) {
                 {previousStatements}
             </Grid>
             <Grid columns={2}>
-                <GridItem><Input style={{width: "95%"}} onChange={(e) => setStatementState(e.target.value)} ref={statementInput} value={statementState} type="text" /></GridItem>
-                <GridItem><Input style={{width: "95%"}} onChange={(e) => setResponseState(e.target.value)} ref={responseInput} value={responseState} type="text" /></GridItem>
+                <GridItem><TextField style={{width: "95%"}} onChange={(e) => setStatementState((e.target as HTMLInputElement).value)} inputRef={statementInput} value={statementState} type="text" /></GridItem>
+                <GridItem><TextField style={{width: "95%"}} onChange={(e) => setResponseState((e.target as HTMLInputElement).value)} inputRef={responseInput} value={responseState} type="text" /></GridItem>
             </Grid>
             <div>
                 <Box><Button onClick={pushNew}>Enter</Button></Box>

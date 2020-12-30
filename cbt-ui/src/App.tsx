@@ -5,8 +5,9 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { ThemeProvider as MatUiThemeProvider } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
-import theme from './theme';
+import theme from './lib/theme/StyledComponentsTheme';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Exercises } from './containers/Exercises';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -19,6 +20,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { LoginButton } from './components/LoginButton';
 import { UserProfilePage } from './pages/UserProfilePage';
 import { GlobalStyle, AppBody } from './components/styled/SharedCss';
+import CustomMuiTheme from './lib/theme/MuiTheme';
 
 function App() {
   return (
@@ -30,35 +32,37 @@ function App() {
       >
         <Router>
           <GlobalStyle />
-          <ThemeProvider theme={theme}>
-            <div>
-              <header>
-                <Navbar>
-                  <NavMenu style={{ float: "left" }}>
-                    <StyledLink to="/"><NavMenuElement displayHover>Home</NavMenuElement></StyledLink>
-                    <StyledLink to="/exercises"><NavMenuElement displayHover>Exercises</NavMenuElement></StyledLink>
-                    <StyledLink to="/statistics"><NavMenuElement displayHover>Statistics</NavMenuElement></StyledLink>
-                    <StyledLink to="/profile"><NavMenuElement displayHover>Profile</NavMenuElement></StyledLink>
-                  </NavMenu>
-                  <NavMenu style={{ float: "right" }}>
-                    <NavMenuElement><LoginButton /></NavMenuElement>
-                  </NavMenu>
-                </Navbar>
-              </header>
-            </div>
-            <AppBody>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/exercises" component={Exercises} />
-                <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHomePage} />
-                <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
-                <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
-                <Route path="/statistics" component={() => <div>Statistics</div>} />
-                <Route path="/profile" component={UserProfilePage} />
-                <Route component={NotFoundPage} />
-              </Switch>
-            </AppBody>
-          </ThemeProvider>
+          <MatUiThemeProvider theme={CustomMuiTheme}>
+            <ThemeProvider theme={theme}>
+              <div>
+                <header>
+                  <Navbar>
+                    <NavMenu style={{ float: "left" }}>
+                      <StyledLink to="/"><NavMenuElement displayHover>Home</NavMenuElement></StyledLink>
+                      <StyledLink to="/exercises"><NavMenuElement displayHover>Exercises</NavMenuElement></StyledLink>
+                      <StyledLink to="/statistics"><NavMenuElement displayHover>Statistics</NavMenuElement></StyledLink>
+                      <StyledLink to="/profile"><NavMenuElement displayHover>Profile</NavMenuElement></StyledLink>
+                    </NavMenu>
+                    <NavMenu style={{ float: "right" }}>
+                      <NavMenuElement><LoginButton /></NavMenuElement>
+                    </NavMenu>
+                  </Navbar>
+                </header>
+              </div>
+              <AppBody>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/exercises" component={Exercises} />
+                  <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHomePage} />
+                  <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
+                  <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
+                  <Route path="/statistics" component={() => <div>Statistics</div>} />
+                  <Route path="/profile" component={UserProfilePage} />
+                  <Route component={NotFoundPage} />
+                </Switch>
+              </AppBody>
+            </ThemeProvider>
+          </MatUiThemeProvider>
         </Router>
       </Auth0Provider>
     </Provider>

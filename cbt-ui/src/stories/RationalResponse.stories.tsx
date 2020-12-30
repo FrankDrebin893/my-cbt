@@ -2,7 +2,7 @@ import React from 'react';
 import { RationalResponseExercise, RationalResponseProps } from '../containers/RationalResponseExercise';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { ThemeProvider } from 'styled-components';
-import theme from '../theme';
+import theme from '../lib/theme/StyledComponentsTheme';
 import { GlobalStyle } from '../components/styled/SharedCss';
 
 export default {

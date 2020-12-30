@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { TextField as MatUiTextField, Button as MatUiButton } from '@material-ui/core';
 
 export const Input = styled.input`
     padding: 0.25rem;
@@ -6,17 +7,5 @@ export const Input = styled.input`
     border: 1px solid black;
 `
 
-export const Button = styled.button`
-    border-radius: 4px;
-    border: 1px solid black;
-    background: ${props => props.theme.colors.primary};
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: white;
-    font-weight: 800;
-    &:hover {
-        cursor: pointer
-    }
-`
+export const Button = styled(MatUiButton)``;
+export const TextField = styled(MatUiTextField)``;

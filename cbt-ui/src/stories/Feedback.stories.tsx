@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { ThemeProvider } from 'styled-components';
-import theme from '../theme';
+import theme from '../lib/theme/StyledComponentsTheme';
 import { GlobalStyle } from '../components/styled/SharedCss';
 import { Snackbar, SnackbarProps } from '../components/feedback/Snackbar';
 

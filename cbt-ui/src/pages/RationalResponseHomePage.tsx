@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as api from '../api/rationalResponseApi';
+import * as api from '../api/RationalResponseApi';
 import { RationalResponse } from "../interfaces/RationalResponse";
 import { useAuth0 } from '@auth0/auth0-react';
-import { Button } from '../components/styled/Input';
+import { Button } from "../components/styled/Input";
 
 export const RationalResponseHomePage = () => {
     const [rationalResponseState, setRationalResponseState] = React.useState<Array<RationalResponse>>([])
