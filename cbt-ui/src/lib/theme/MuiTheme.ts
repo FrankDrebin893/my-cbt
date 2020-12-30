@@ -7,7 +7,7 @@ import {
 const CustomMuiTheme = createMuiTheme({
     palette: {
       primary: {
-        main: '#6772e5',
+        main: '#0f74d9',
       },
     },
 });

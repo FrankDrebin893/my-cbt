@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, NavMenu, NavMenuElement, StyledLink } from './components/styled/Navigation';
+import { NavBar } from './components/navigation/NavBar';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,7 +17,6 @@ import { RationalResponseHomePage } from './pages/RationalResponseHomePage';
 import store from './store';
 import { Provider } from 'react-redux'
 import ProtectedRoute from './components/ProtectedRoute';
-import { LoginButton } from './components/LoginButton';
 import { UserProfilePage } from './pages/UserProfilePage';
 import { GlobalStyle, AppBody } from './components/styled/SharedCss';
 import CustomMuiTheme from './lib/theme/MuiTheme';
@@ -36,7 +35,8 @@ function App() {
             <ThemeProvider theme={theme}>
               <div>
                 <header>
-                  <Navbar>
+                  <NavBar />
+                  {/*<Navbar>
                     <NavMenu style={{ float: "left" }}>
                       <StyledLink to="/"><NavMenuElement displayHover>Home</NavMenuElement></StyledLink>
                       <StyledLink to="/exercises"><NavMenuElement displayHover>Exercises</NavMenuElement></StyledLink>
@@ -46,7 +46,7 @@ function App() {
                     <NavMenu style={{ float: "right" }}>
                       <NavMenuElement><LoginButton /></NavMenuElement>
                     </NavMenu>
-                  </Navbar>
+                  </Navbar>*/}
                 </header>
               </div>
               <AppBody>
