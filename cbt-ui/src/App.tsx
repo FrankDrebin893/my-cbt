@@ -36,17 +36,6 @@ function App() {
               <div>
                 <header>
                   <NavBar />
-                  {/*<Navbar>
-                    <NavMenu style={{ float: "left" }}>
-                      <StyledLink to="/"><NavMenuElement displayHover>Home</NavMenuElement></StyledLink>
-                      <StyledLink to="/exercises"><NavMenuElement displayHover>Exercises</NavMenuElement></StyledLink>
-                      <StyledLink to="/statistics"><NavMenuElement displayHover>Statistics</NavMenuElement></StyledLink>
-                      <StyledLink to="/profile"><NavMenuElement displayHover>Profile</NavMenuElement></StyledLink>
-                    </NavMenu>
-                    <NavMenu style={{ float: "right" }}>
-                      <NavMenuElement><LoginButton /></NavMenuElement>
-                    </NavMenu>
-                  </Navbar>*/}
                 </header>
               </div>
               <AppBody>
