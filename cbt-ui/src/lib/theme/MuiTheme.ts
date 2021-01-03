@@ -1,7 +1,5 @@
 import {
-	createMuiTheme,
-	ThemeProvider as MuiThemeProvider,
-	darken,
+	createMuiTheme
 } from '@material-ui/core/styles';
 
 const CustomMuiTheme = createMuiTheme({

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "../components/styled/Input";
+import { Button } from "../styled/Input";
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 
-export const LoginButton = () => {
+export const LoginWidget = () => {
     const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
-    if (isAuthenticated) {
+    if (isAuthenticated === true) {
         return <span>
             <Link to="/profile">
                 <IconButton
