@@ -23,5 +23,5 @@ export const LoginWidget = () => {
     }
 
     let redirectUri = `${window.location.origin}`;
-    return <Button onClick={() => loginWithRedirect({ audience: process.env.REACT_APP_BACKEND_BASE_URI, redirectUri })}>Log In</Button>;
+    return <Button color={"secondary"} onClick={() => loginWithRedirect({ audience: process.env.REACT_APP_BACKEND_BASE_URI, redirectUri })}>Log In</Button>;
 };
