@@ -31,47 +31,47 @@ export const NavBar = () => {
   const open = Boolean(anchorEl);
 
   const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
 
   const handleCloseMenu = () => {
-      setAnchorEl(null);
+    setAnchorEl(null);
   };
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenMenu}>
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleOpenMenu}>
             <MenuIcon />
           </IconButton>
           <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleCloseMenu}
-            >
-                <MenuItem onClick={handleCloseMenu}><StyledLink to="/">Home</StyledLink></MenuItem>
-            <MenuItem onClick={handleCloseMenu}><StyledLink to="/exercises">Exercises</StyledLink></MenuItem>
-            </Menu>
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={open}
+            onClose={handleCloseMenu}
+          >
+            <StyledLink to="/"><MenuItem onClick={handleCloseMenu}>Home</MenuItem></StyledLink>
+            <StyledLink to="/exercises"><MenuItem onClick={handleCloseMenu}>Exercises</MenuItem></StyledLink>
+          </Menu>
           <Typography variant="h6" className={classes.title}>
             MyCBT
           </Typography>
           <LoginWidget />
         </Toolbar>
       </AppBar>
-    </div>
+    </div >
   );
 }
 
