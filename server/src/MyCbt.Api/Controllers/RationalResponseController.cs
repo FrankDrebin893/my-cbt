@@ -27,6 +27,7 @@ namespace MyCbt.Api.Controllers
 
         [HttpGet]
         [Route("GetAll")]
+        [ProducesResponseType(typeof(List<RationalResponseExercise>), 200)]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await Mediator.Send(new GetRationalResponsesQuery()));
@@ -34,6 +35,7 @@ namespace MyCbt.Api.Controllers
 
         [HttpGet]
         [Route("GetById")]
+        [ProducesResponseType(typeof(RationalResponseExercise), 200)]
         public async Task<IActionResult> GetById(int id)
         {
             return Ok(await Mediator.Send(new GetRationalResponseByIdQuery {Id = id}));

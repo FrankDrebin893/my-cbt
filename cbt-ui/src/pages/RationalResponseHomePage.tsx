@@ -4,6 +4,7 @@ import * as api from '../api/RationalResponseApi';
 import { RationalResponse } from "../interfaces/RationalResponse";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from "../components/styled/Input";
+import Typography from '@material-ui/core/Typography';
 
 export const RationalResponseHomePage = () => {
     const [rationalResponseState, setRationalResponseState] = React.useState<Array<RationalResponse>>([])
@@ -28,6 +29,7 @@ export const RationalResponseHomePage = () => {
     });
 
     return <div>
+        <Typography variant="h4">Rational Response</Typography>
         <div>
             <Link to="/exercises/rational-response/new"><Button>Create new</Button></Link>
         </div>
