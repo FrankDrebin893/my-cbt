@@ -1,4 +1,4 @@
-import { Paper as MuiPaper } from '@material-ui/core';
+import { Paper as MuiPaper, Container as MuiContainer } from '@material-ui/core';
 import styled from 'styled-components';
 import { defaultPadding } from './SharedCss';
 interface GridProps {
@@ -28,14 +28,11 @@ export const TableRow = styled.div`
     flex-direction: row;
 `
 
-export const Container = styled.div`
-    ${defaultPadding};
-`
+export const Container = styled(MuiContainer)``;
 
 export const Box = styled.span`
     ${defaultPadding};
 `
 
 export const Paper = styled(MuiPaper)`
-    padding: 15px;
 `;

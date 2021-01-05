@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import * as api from '../api/RationalResponseApi';
 import { RationalResponse } from "../interfaces/RationalResponse";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from "../components/styled/Input";
 import Typography from '@material-ui/core/Typography';
+import { Paper, Container } from '../components/styled/Layout';
+import { StyledLink } from "../components/styled/Navigation";
+import { Grid } from "@material-ui/core";
 
 export const RationalResponseHomePage = () => {
     const [rationalResponseState, setRationalResponseState] = React.useState<Array<RationalResponse>>([])
@@ -25,17 +27,20 @@ export const RationalResponseHomePage = () => {
     }, [getAccessTokenSilently]);
 
     var responseLinks = rationalResponseState.map((value) => {
-        return <div><Link to={`/exercises/rational-response/${value.id}`}>ID: {value.id}</Link></div>
+        return <div><StyledLink to={`/exercises/rational-response/${value.id}`}>ID: {value.id}</StyledLink></div>
     });
 
     return <div>
-        <Typography variant="h4">Rational Response</Typography>
-        <div>
-            <Link to="/exercises/rational-response/new"><Button>Create new</Button></Link>
-        </div>
-        <div>
-            Previous exercises:
-        {responseLinks}
-        </div>
+        <Paper>
+            <Container><Typography variant="h4">Rational Response</Typography></Container>
+
+            <Grid container spacing={3}>
+                <Grid xs={3}><StyledLink to="/exercises/rational-response/new"><Button>Create new</Button></StyledLink></Grid>
+                <Grid xs={9}>
+                    <Typography variant="h5">Log</Typography>
+                    {responseLinks}
+                </Grid>
+            </Grid>
+        </Paper>
     </div>
 }

@@ -31,5 +31,4 @@ export const NavMenuElement = styled.li<{displayHover?: boolean}>`
 `
 export const StyledLink = styled(Link)`
     text-decoration: none;
-    color: black;
 `
