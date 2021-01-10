@@ -20,6 +20,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { UserProfilePage } from './pages/UserProfilePage';
 import { GlobalStyle, AppBody } from './components/styled/SharedCss';
 import CustomMuiTheme from './lib/theme/MuiTheme';
+import { Container } from './components/styled/Layout';
 
 function App() {
   return (
@@ -33,22 +34,24 @@ function App() {
           <GlobalStyle />
           <MatUiThemeProvider theme={CustomMuiTheme}>
             <ThemeProvider theme={theme}>
-              <div>
-                <header>
-                  <NavBar />
-                </header>
-              </div>
               <AppBody>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/exercises" component={Exercises} />
-                  <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHomePage} />
-                  <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
-                  <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
-                  <Route path="/statistics" component={() => <div>Statistics</div>} />
-                  <Route path="/profile" component={UserProfilePage} />
-                  <Route component={NotFoundPage} />
-                </Switch>
+                <div>
+                  <header>
+                    <NavBar />
+                  </header>
+                </div>
+                <Container style={{paddingTop: '15px'}}>
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/exercises" component={Exercises} />
+                    <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHomePage} />
+                    <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
+                    <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
+                    <Route path="/statistics" component={() => <div>Statistics</div>} />
+                    <Route path="/profile" component={UserProfilePage} />
+                    <Route component={NotFoundPage} />
+                  </Switch>
+                </Container>
               </AppBody>
             </ThemeProvider>
           </MatUiThemeProvider>

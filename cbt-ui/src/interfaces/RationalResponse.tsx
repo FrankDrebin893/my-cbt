@@ -6,4 +6,5 @@ export interface RationalResponseEntry {
 export interface RationalResponse {
     id: number;
     entries: Array<RationalResponseEntry>
+    createdDate: Date
 }
