@@ -23,9 +23,7 @@ export const RationalResponseContainer = (props: any) => {
     const saveExercise = (values: Array<RationalResponseEntry>) => {
         return getAccessTokenSilently({ audience: process.env.REACT_APP_BACKEND_BASE_URI })
             .then((token) => rationalResponseApi.postRationalResponse({ Entries: values, UserId: user.sub }, token))
-            .then((response) => {
-                console.log("Succeeded:", response);
-            }).catch(reason => {
+            .catch(reason => {
                 console.log("Failed:", reason);
             });
     }

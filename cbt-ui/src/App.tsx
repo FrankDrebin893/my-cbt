@@ -21,6 +21,7 @@ import { UserProfilePage } from './pages/UserProfilePage';
 import { GlobalStyle, AppBody } from './components/styled/SharedCss';
 import CustomMuiTheme from './lib/theme/MuiTheme';
 import { Container } from './components/styled/Layout';
+import JournalHomePage from './pages/JournalHomePage';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
                     <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHomePage} />
                     <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
                     <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />
+                    <ProtectedRoute exact path="/journal" component={JournalHomePage} />
                     <Route path="/statistics" component={() => <div>Statistics</div>} />
                     <Route path="/profile" component={UserProfilePage} />
                     <Route component={NotFoundPage} />
