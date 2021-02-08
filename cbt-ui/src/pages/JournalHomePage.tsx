@@ -4,14 +4,21 @@ import React from 'react';
 import { Button, TextField } from '../components/styled/Input';
 
 export const JournalHomePage = (props: any) => {
+    const [textFieldState, setTextFieldState] = React.useState<string>("");
     return (
         <div>
             <Typography variant="h4">Your journal</Typography>
             <Typography variant="h5">Recent journal entries</Typography>
             <Paper>
                 <Box>
-                    <Button>Add new journal entry</Button>
-                    <TextField />
+                    <Box>
+                        <form>
+                            <TextField onChange={e => setTextFieldState(e.target.value)} />
+                            <Box>
+                                <Button onClick={() => console.log("Saving")}>Save</Button>
+                            </Box>
+                        </form>
+                    </Box>
                 </Box>
                 <Box>
                     Display recent journal entries here
