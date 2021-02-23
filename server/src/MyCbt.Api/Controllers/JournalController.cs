@@ -24,10 +24,10 @@ namespace MyCbt.Api.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetJournalEntriesByUserId")]
         [Authorize]
-        public async Task<IActionResult> AddJournalEntry(string userId)
+        public async Task<IActionResult> GetJournalEntriesByUserId(string userId)
         {
             var succeeded = await Mediator.Send(new GetJournalEntriesByUserIdQuery()
             {

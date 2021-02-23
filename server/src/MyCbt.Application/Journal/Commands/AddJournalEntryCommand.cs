@@ -33,7 +33,7 @@ namespace MyCbt.Application.Journal.Commands
                 };
 
                 var result = await _context.JournalEntries.AddAsync(entity);
-
+                await _context.SaveChangesAsync();
                 return result.Entity.Id;
             }
         }

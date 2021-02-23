@@ -3,12 +3,12 @@ import {
 	JournalEntry
 } from '../interfaces/Journal';
 
-export function postRationalResponse(
+export function postJournalEntry(
 	request: AddJournalEntryCommand,
 	accessToken: string
 ): Promise<number|null> {
 	return axios.default.post(
-		process.env.REACT_APP_BACKEND_BASE_URI + '/api/journal/addJournalEntry',
+		process.env.REACT_APP_BACKEND_BASE_URI + '/api/journal/AddJournalEntry',
 		request,
         {
             headers: createHeaderWithAuthorization(accessToken),
@@ -23,13 +23,13 @@ export function postRationalResponse(
 }
 
 export function getJournalEntriesByUserId(
-	userId: number,
+	userId: string,
 	accessToken: string
 ): Promise<JournalEntry[]> {
 	return axios.default
 		.get(
 			process.env.REACT_APP_BACKEND_BASE_URI +
-				`/api/journal/getJournalEntriesByUserId?userId=${userId}`,
+				`/api/journal/GetJournalEntriesByUserId?userId=${encodeURI(userId)}`,
                 {
                     headers: createHeaderWithAuthorization(accessToken),
                 }
