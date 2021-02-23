@@ -9,13 +9,13 @@ import { ThemeProvider as MatUiThemeProvider } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
 import theme from './lib/theme/StyledComponentsTheme';
 import { Auth0Provider } from "@auth0/auth0-react";
-import { Exercises } from './containers/Exercises';
+import { ExercisesReferencePage } from './pages/ExercisesReferencePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { Home } from './containers/Home';
 import { RationalResponseContainer } from './containers/RationalResponseContainer';
 import { RationalResponseHomePage } from './pages/RationalResponseHomePage';
 import store from './store';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import ProtectedRoute from './components/ProtectedRoute';
 import { UserProfilePage } from './pages/UserProfilePage';
 import { GlobalStyle, AppBody } from './components/styled/SharedCss';
@@ -44,7 +44,7 @@ function App() {
                 <Container style={{paddingTop: '15px'}}>
                   <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/exercises" component={Exercises} />
+                    <Route exact path="/exercises" component={ExercisesReferencePage} />
                     <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHomePage} />
                     <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
                     <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />

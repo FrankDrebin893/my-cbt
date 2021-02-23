@@ -6,12 +6,14 @@ using System.IO;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using MyCbt.Core.Entities.Journal;
 
 namespace MyCbt.Infrastructure.Persistence
 {
     public class ApplicationContext : DbContext
     {
         public DbSet<RationalResponseExercise> RationalResponseExercises {get;set;}
+        public DbSet<JournalEntry> JournalEntries { get; set; }
 
         public ApplicationContext()
         {

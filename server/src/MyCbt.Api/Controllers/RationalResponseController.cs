@@ -43,6 +43,7 @@ namespace MyCbt.Api.Controllers
 
         [HttpPost]
         [Route("")]
+        [Authorize]
         public async Task<IActionResult> AddRationalResponse(AddRationalResponseCommand addRationalResponseCommand)
         {
             return Ok(await Mediator.Send(addRationalResponseCommand));
