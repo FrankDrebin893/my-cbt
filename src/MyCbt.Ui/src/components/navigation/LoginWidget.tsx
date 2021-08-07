@@ -5,10 +5,12 @@ import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 
 export const LoginWidget = () => {
-    const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
-
-    if (isAuthenticated === true) {
-        return <span>
+    const { loginWithRedirect, isAuthenticated, logout, user, isLoading } = useAuth0();
+    if (isLoading) {
+        return <div>Loading ...</div>;
+    }
+    if (isAuthenticated) {
+        return isAuthenticated && (<span>
             <Link to="/profile">
                 <IconButton
                     aria-label="account of current user"
@@ -19,9 +21,8 @@ export const LoginWidget = () => {
                 </IconButton>
             </Link>
             <Button color={"secondary"} onClick={() => logout()}>Log Out</Button>
-        </span>;
+        </span>);
+    } else {
+        return <Button color={"secondary"} onClick={() => loginWithRedirect()}>Log In</Button>;
     }
-
-    let redirectUri = `${window.location.origin}`;
-    return <Button color={"secondary"} onClick={() => loginWithRedirect({ audience: process.env.REACT_APP_BACKEND_BASE_URI, redirectUri })}>Log In</Button>;
 };
