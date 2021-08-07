@@ -9,7 +9,7 @@ import { ThemeProvider as MatUiThemeProvider } from '@material-ui/core';
 import { ThemeProvider } from 'styled-components';
 import theme from './lib/theme/StyledComponentsTheme';
 import { Auth0Provider } from "@auth0/auth0-react";
-import { ExercisesReferencePage } from './pages/ExercisesReferencePage';
+import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { Home } from './containers/Home';
 import { RationalResponseContainer } from './containers/RationalResponseContainer';
@@ -43,8 +43,7 @@ function App() {
                 </div>
                 <Container style={{paddingTop: '15px'}}>
                   <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/exercises" component={ExercisesReferencePage} />
+                    <Route exact path="/" component={HomePage} />
                     <ProtectedRoute exact path="/exercises/rational-response" component={RationalResponseHomePage} />
                     <ProtectedRoute exact path="/exercises/rational-response/new" component={RationalResponseContainer} />
                     <ProtectedRoute exact path="/exercises/rational-response/:id" component={RationalResponseContainer} />

@@ -4,10 +4,10 @@ import { RationalResponseIcon } from "../components/styled/Icons";
 import { Grid, GridHeader, GridItem } from "../components/styled/Layout";
 import { RationalResponseExercise } from "../containers/RationalResponseExercise";
 
-export const ExercisesReferencePage = () => {
+export const HomePage = () => {
     return (
         <div>
-            <h1>Exercises</h1>
+            <h1>Your dashboard</h1>
             <h2>Select the exercise you want to do</h2>
             <Grid columns={5}>
                 <GridHeader>Rational Response</GridHeader>

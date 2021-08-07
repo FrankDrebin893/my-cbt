@@ -63,10 +63,9 @@ export const NavBar = () => {
             onClose={handleCloseMenu}
           >
             <StyledLink to="/"><MenuItem onClick={handleCloseMenu}>Home</MenuItem></StyledLink>
-            <StyledLink to="/exercises"><MenuItem onClick={handleCloseMenu}>Exercises</MenuItem></StyledLink>
           </Menu>
           <Typography variant="h6" className={classes.title}>
-            MyCBT
+            <StyledLink style={{color: "white"}} to="/">MyCBT</StyledLink>
           </Typography>
           <LoginWidget />
         </Toolbar>

@@ -35,4 +35,5 @@ export const Box = styled.span`
 `
 
 export const Paper = styled(MuiPaper)`
+    padding: 15px;
 `;
