@@ -4,13 +4,10 @@ import { RationalResponse } from "../interfaces/RationalResponse";
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from "../components/styled/Input";
 import Typography from '@material-ui/core/Typography';
-import { Paper, Container } from '../components/styled/Layout';
-import { StyledLink } from "../components/styled/Navigation";
-import { Grid } from "@material-ui/core";
+import { StyledLink, TableRowLink } from "../components/styled/Navigation";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
@@ -33,29 +30,32 @@ export const RationalResponseHomePage = () => {
     }, [getAccessTokenSilently]);
 
     var previousLinks = rationalResponseState.map((value) => {
-        return <TableRow>
-            <TableCell align="right">{value.id}</TableCell>
-            <TableCell align="right">{value.createdDate?.toISOString()}</TableCell>
-            <TableCell align="right">{value.entries.length}</TableCell>
-        </TableRow>
+        return (
+            <TableRow key={"tr" + value.id}>
+                <TableRowLink to={`exercises/${value.id}`}>
+                    <TableCell align="right">{new Date(value.createdDate).toDateString()}</TableCell>
+                    <TableCell align="right">{value.entries.length}</TableCell>
+                </TableRowLink>
+            </TableRow>)
     });
 
     const table =
         <Table>
             <TableHead>
-                <TableCell align="right">Id</TableCell>
-                <TableCell align="right">Created date</TableCell>
-                <TableCell align="right">Entry count</TableCell>
+                <TableRow>
+                    <TableCell align="right">Created date</TableCell>
+                    <TableCell align="right">Entry count</TableCell>
+                </TableRow>
             </TableHead>
             <TableBody>
                 {previousLinks}
             </TableBody>
-        </Table>;        
+        </Table>;
 
     return <div>
         <Typography variant="h4">Rational Response</Typography>
         <StyledLink to="/exercises/rational-response/new"><Button color={"primary"}>Create new</Button></StyledLink>
-        <Typography variant="h5">Log</Typography>
+        <Typography variant="h5">Previous exercises</Typography>
         {table}
     </div>
 }

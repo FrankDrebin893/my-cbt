@@ -28,6 +28,7 @@ namespace MyCbt.Application.RationalResponse.Commands
                 var entity = new RationalResponseExercise();
                 entity.Entries = request.Entries;
                 entity.UserId = request.UserId;
+                entity.CreatedDate = DateTime.UtcNow;
                 var added = await _context.AddAsync<RationalResponseExercise>(entity, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
                 return added.Entity.Id;
